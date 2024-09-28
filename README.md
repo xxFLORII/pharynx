@@ -18,9 +18,26 @@ USAGE
                  If no value is given, uses the path in `-o` followed by `.phar`.
                  If neither -o nor -p are passed, or only `-p` is passed but without values,
                  `-p output.phar` is assumed.
+  -a ANTIGEN   : The virion antigens to shade.
+                 Can be passed multiple times
+  -c[=PATH]    : Infer source paths and antigens from composer.
+                 Assumes that `composer install` was already run.
+                 If a value is not provided, uses the same path as `-i`.
+                 Otherwise, PATH should be the path to the directory containing composer.json.
 
-EXAMPLE
-  php pharynx.phar -i path/to/your/plugin -p output.phar
+EXAMPLES
+  Package a plugin phar:
+  $ php pharynx.phar -i path/to/your/plugin -p my-plugin.phar
+
+  Package a plugin phar with composer virion dependencies:
+  $ php pharynx.phar -i path/to/your/plugin -c -p my-plugin.phar
+
+  Bundle output to a directory without building phar
+  $ php pharynx.phar -i path/to/your/plugin -o output
+
+  Package a plugin phar to output.phar, along with generated files in a gen directory:
+  $ php pharynx.phar -i path/to/your/plugin -s path/to/gen
+
 ```
 
 ## Use with PocketMine plugins
