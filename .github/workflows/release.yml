@@ -7,7 +7,7 @@ on:
 jobs:
   draft:
     name: Create GitHub draft release
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +29,7 @@ jobs:
           echo ::set-output name=TAG::$tag
           echo ::set-output name=BODY::$(git tag -l --format='%(contents)' $tag)
       - name: Create draft release
-        uses: ncipollo/release-action@v1.10.0
+        uses: ncipollo/release-action@v1.18.0
         with:
           artifacts: ${{ github.workspace }}/pharynx.phar,plugin-dev/*
           commit: ${{ github.sha }}
